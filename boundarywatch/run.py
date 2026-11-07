@@ -20,7 +20,7 @@ def main() -> None:
     rows, traces = run_experiment(provider, repetitions=args.repetitions, measure_latency=args.latency)
     write_outputs(rows, traces, args.output_dir)
     chart_paths = generate_charts(rows, args.output_dir)
-    report_path = generate_report(rows, args.repetitions, provider_name, args.output_dir)
+    report_path = generate_report(rows, args.repetitions, provider_name, args.output_dir, getattr(provider, "model", None))
     viewer_path = generate_viewer(rows, traces, args.output_dir)
     print(f"Completed {len(traces)} traces and {len(rows)} monitor evaluations using {provider_name}.")
     print(f"Summary: {args.output_dir / 'summary.csv'}")
